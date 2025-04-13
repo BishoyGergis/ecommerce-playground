@@ -19,6 +19,8 @@ public class LoginPage {
     public By forgottenPasswordLink = By.linkText("Forgotten Password");
     public By loginButton = By.xpath("//input[@type='submit' and @value='Login']");
     public By continueButton = By.linkText("Continue");
+    public By myAccountHeader = By.xpath("//h2[@class='card-header h5' and text()='My Account']");
+
 
     public LoginPage enterEMailAddress(String emailAdress) {
         type(driver, EMailAddressField , emailAdress);
@@ -44,6 +46,11 @@ public class LoginPage {
     {
         click (driver , continueButton);
     }
+
+    public String getMyAccountHeader (){
+        return driver.findElement(myAccountHeader).getText();
+    }
+
 
 
 

@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import static utils.ActionBot.*;
+import static utils.ActionBot.getAttributeValue;
 
 public class RegisterPage {
 
@@ -15,11 +16,12 @@ public class RegisterPage {
     public By emailField = By.id("input-email");
     public By telephoneField = By.id("input-telephone");
     public By passwordField = By.id("input-password");
-    public By confirmPasswordField = By.id("Password Confirm");
-    public By subscribeYesRadioButton = By.id("input-newsletter-yes");
-    public By subscribeNoRadioButton = By.id("input-newsletter-no");
-    public By privacyPolicyCheckbox = By.id("input-agree");
+    public By confirmPasswordField = By.id("input-confirm");
+    public By subscribeYesRadioButton = By.cssSelector("label[for='input-newsletter-yes']");
+    public By subscribeNoRadioButton = By.cssSelector("label[for='input-newsletter-no']");
+    public By privacyPolicyCheckbox = By.cssSelector("label[for='input-agree']");
     public By continueButton = By.xpath("//input[@type='submit' and @value='Continue']");
+    public By accountCreatedMessage = By.xpath("//h1[contains(text(), 'Your Account Has Been Created!')]");
 
 
     public RegisterPage enterFirstName(String firstName){
@@ -60,6 +62,10 @@ public class RegisterPage {
     }
     public void clickcontinueButton () {
         click (driver , continueButton);
+    }
+
+    public String getAccountCreatedMessage (){
+        return driver.findElement(accountCreatedMessage).getText();
     }
 
 

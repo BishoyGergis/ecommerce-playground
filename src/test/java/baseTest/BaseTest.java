@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeClass;
+import pages.HomePage;
 
 
 import java.io.IOException;
@@ -23,7 +24,8 @@ public class BaseTest {
         ChromeOptions chromeOptions = new ChromeOptions();
         driver = new ChromeDriver(chromeOptions);
         driver.manage().window().maximize();
-        driver.get("https://ecommerce-playground.lambdatest.io/index.php?route=account/login");
+        driver.get("https://ecommerce-playground.lambdatest.io");
+
 
     }
 

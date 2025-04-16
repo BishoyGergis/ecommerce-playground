@@ -20,6 +20,9 @@ public class LoginPage {
     public By loginButton = By.xpath("//input[@type='submit' and @value='Login']");
     public By continueButton = By.linkText("Continue");
     public By myAccountHeader = By.xpath("//h2[@class='card-header h5' and text()='My Account']");
+    public By loginWarningMessage = By.xpath("//div[contains(@class, 'alert-danger') and contains(text(), 'No match for E-Mail Address')]");
+    public By loginAttemptWarningMessage = By.xpath("//div[contains(@class,'alert-danger') and contains(text(), 'exceeded allowed number of login attempts')]");
+
 
 
     public LoginPage enterEMailAddress(String emailAdress) {
@@ -48,8 +51,17 @@ public class LoginPage {
     }
 
     public String getMyAccountHeader (){
-        return driver.findElement(myAccountHeader).getText();
+        return getText(driver , myAccountHeader);
     }
+
+    public String getLoginWarningMessage  (){
+        return getText(driver , loginWarningMessage);
+    }
+    public String getLoginAttemptWarningMessage  (){
+        return getText(driver , loginAttemptWarningMessage);
+    }
+
+
 
 
 

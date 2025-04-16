@@ -25,8 +25,6 @@ public class BaseTest {
         driver = new ChromeDriver(chromeOptions);
         driver.manage().window().maximize();
         driver.get("https://ecommerce-playground.lambdatest.io");
-
-
     }
 
     @AfterClass

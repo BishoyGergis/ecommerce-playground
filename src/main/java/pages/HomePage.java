@@ -2,9 +2,13 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
-import static utils.ActionBot.click;
+import java.util.List;
+
+import static utils.ActionBot.*;
+import static utils.ActionBot.type;
 
 
 public class HomePage {
@@ -18,6 +22,9 @@ public class HomePage {
     public By myAccountLink = By.xpath("//a[@class='icon-left both nav-link dropdown-toggle']//span[normalize-space(text())='My account']");
     public By shopByCategoryLink = By.cssSelector("a.icon-left.both.text-reset");
     public By componentsLink = By.cssSelector("a.icon-left.both.nav-link[href='https://ecommerce-playground.lambdatest.io/index.php?route=product/category&path=25']");
+    public By searchInput = By.name("search");
+    private By searchButton = By.cssSelector("button[type='submit'].type-text");
+    public By productListLinks = By.cssSelector("a.text-ellipsis-2");
 
 
 
@@ -54,12 +61,21 @@ public class HomePage {
         click(driver , myAccountLink);
         return this;
     }
-    public HomePage clickRegisterSelection ()
-    {
+    public HomePage clickRegisterSelection () {
        new Actions(driver).moveToElement(driver.findElement(myAccountLink)).perform();
-
         click (driver , registerLink);
-
         return this;
     }
+
+    public HomePage enterSearchText (String text) {
+        type(driver,searchInput,text );
+        click(driver,searchButton);
+        return this;
+    }
+
+    public List<WebElement> getProductList() {
+        return getListOfElements(driver,productListLinks);
+    }
+
+
 }

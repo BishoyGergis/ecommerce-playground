@@ -21,8 +21,8 @@ public class LoginSuccessfullyTest extends BaseTest {
     @Description("Successfully login, Enter Valid Mail & Password")
     @Test
     public void SuccessfuLogin () {
-        loginPage.enterEMailAddress("Bg2@gmail.com")
-                .enterPassword("password")
+        loginPage.enterEMailAddress("Bg7@gmail.com")
+                .enterPassword("password1")
                 .clickLoginButton();
         Assert.assertEquals("My Account",loginPage.getMyAccountHeader());
     }

@@ -83,7 +83,6 @@ public class ActionBot {
 
         wait.until(
                 d -> {
-
                     System.out.println("Getting text: " + driver.findElement(locator ).getText());
                     return true;
                 });

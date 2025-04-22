@@ -4,6 +4,7 @@ import baseTest.BaseTest;
 import io.qameta.allure.Description;
 import org.junit.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.RegisterPage;
 
@@ -18,14 +19,14 @@ public class RegisterTest extends BaseTest {
     }
 
     @Description("Enter Valid Mail & Password")
-    //@Test
+    @Test
     public void SuccessfulRegister () {
         registerPage.enterFirstName("Bishoy")
                 .enterlasstName("Gergis")
-                .enterEmail("Bg2@gmail.com")
-                .enterTelephone("1234")
-                .enterPassword("password")
-                .enterConfirmPassword("password")
+                .enterEmail("Bg7@gmail.com")
+                .enterTelephone("12345")
+                .enterPassword("password1")
+                .enterConfirmPassword("password1")
                 .clickSubscribeYesRadioButton()
                 .clickPrivacyPolicyCheckbox().clickcontinueButton();
         Assert.assertEquals("Your Account Has Been Created!",registerPage.getAccountCreatedMessage());

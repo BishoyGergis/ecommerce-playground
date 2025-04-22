@@ -24,11 +24,10 @@ public class TryLoginWithEmptyFieldTest extends BaseTest {
     public void SuccessfuLogin () {
         loginPage.clickLoginButton();
 
-        //Assert.assertEquals("Warning: No match for E-Mail Address and/or Password",loginPage.getLoginWarningMessage());
-        //Assert.assertEquals("Warning: Your account has exceeded allowed number of login attempts. Please try again in 1 hour.",loginPage.getLoginAttemptWarningMessage());
-        Assert.assertTrue(loginPage.getLoginAttemptWarningMessage()
+
+        Assert.assertTrue(loginPage.getLoginWarningMessage()
                 .contains("Your account has exceeded allowed number of login attempts")
-                ||loginPage.getLoginAttemptWarningMessage()
+                ||loginPage.getLoginWarningMessage()
                 .contains("No match for E-Mail Address and/or Password" ));
 
     }

@@ -19,12 +19,13 @@ public class searchTest extends BaseTest {
 
     @Test
     public void SeachTest() throws InterruptedException {
-        homePage.enterSearchText("Mac");
+        homePage.enterSearchText("phone");
         List<WebElement> products = homePage.getProductList();
 
         for (WebElement product : products) {
+            Thread.sleep(200);
             System.out.println(product.getText());
-            Assert.assertTrue((product.getText().contains("Mac")));
+            Assert.assertTrue((product.getText().contains("Phone")));
         }
 
     }

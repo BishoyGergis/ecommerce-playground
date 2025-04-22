@@ -2,6 +2,7 @@ package testCases.checkoutTestCases;
 
 import baseTest.BaseTest;
 import io.qameta.allure.Description;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.*;
@@ -10,6 +11,7 @@ public class CheckoutAsGuestTest extends BaseTest {
     ProductPage productPage;
     EditCartPage editCartPage;
     CheckoutPage checkoutPage;
+    ConfirmOrderPage ConfirmOrderPage;
 
 
 
@@ -22,6 +24,7 @@ public class CheckoutAsGuestTest extends BaseTest {
         productPage = new ProductPage(driver);
         editCartPage = new EditCartPage(driver);
         checkoutPage = new CheckoutPage(driver);
+        ConfirmOrderPage = new ConfirmOrderPage(driver);
     }
 
     @Description("Checkout Scenario ")
@@ -30,7 +33,7 @@ public class CheckoutAsGuestTest extends BaseTest {
         productPage.clickListViewButton()
                 .clickInStockFilterCheckbox();
         Thread.sleep(2000);
-        productPage.clickProductByIndex(1)
+        productPage.clickProductByIndex(3)
                 .clickClosePopupButton()
                 .clickCartIcon()
                 .clickSidebarMenuEditCartButton();
@@ -50,6 +53,8 @@ public class CheckoutAsGuestTest extends BaseTest {
         checkoutPage.selectRegionByIndex(1)
                 .clickAgreeCheckoutBox()
                 .clickCheckoutButton();
+        ConfirmOrderPage.clickConfirmOrderButton();
+        Assert.assertTrue(ConfirmOrderPage.getOrderPlacedTitle().contains("Your order has been placed!"));
     }
 
 }

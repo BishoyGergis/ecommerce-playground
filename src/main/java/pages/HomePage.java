@@ -27,11 +27,6 @@ public class HomePage {
     public By productListLinks = By.cssSelector("a.text-ellipsis-2");
 
 
-
-
-
-
-
     public HomePage clickAppleSection ()
     {
         new Actions(driver).moveToElement(driver.findElement(megaMenuLink)).perform();

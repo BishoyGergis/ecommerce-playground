@@ -24,7 +24,7 @@ public class ProductPage {
     public By cartItemCounter = By.cssSelector("span.badge.badge-pill.badge-info.cart-item-total");
     public By closePopupButton = By.cssSelector(".close");
     public By inStockFilterCheckbox = By.xpath("//label[@for='mz-fss-0--1' and @class='custom-control-label']");
-    public By outStockFilterCheckbox = By.id("mz-fss-0-5");
+    public By outStockFilterCheckbox = By.xpath("//label[@for='mz-fss-0-5' and @class='custom-control-label']");
     public By cartIcon = By.cssSelector("a.cart.text-reset.text-decoration-none.no-title");
     public By sidebarMenuEditCartButton  = By.cssSelector("a.btn.btn-primary.btn-lg.btn-block");
     public By sidebarMenuCheckoutButton = By.cssSelector("a.btn.btn-secondary.btn-lg.btn-block[role='button']");

@@ -2,7 +2,10 @@ package testCases.checkoutTestCases;
 
 
 import baseTest.BaseTest;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -34,17 +37,24 @@ public class CheckoutWithLogedinUserTest extends BaseTest {
         ConfirmOrderPage = new ConfirmOrderPage(driver);
     }
 
-    @Description("Checkout Scenario ")
+    @Feature("Checkout Process")
+    @Story("Registered user completes a quick checkout with in-stock product")
+    @Description("Verify that a user can quickly select a product, proceed to checkout, agree to terms, and confirm the order successfully")
     @Test
-    public void addToCartScenario () throws InterruptedException {
+    public void checkoutWithLogedinUser () throws InterruptedException {
+        Allure.step("Select a product by index" );
         productPage.clickListViewButton().clickInStockFilterCheckbox();
-        Thread.sleep(2000);
-        productPage.clickProductByIndex(1) // 1=bug , 3 / 4 / 7 / 8 / 9 success
+        Thread.sleep(4000);
+        productPage.clickProductByIndex(3) // 1=bug , 3 / 4 / 7 / 8 / 9 success
                 .clickClosePopupButton()
                 .clickCartIcon()
                 .clickSidebarMenuEditCartButton();
+
+        Allure.step("Proceed to checkout and agree to terms");
         editCartPage.clickCheckoutButton();
         checkoutPage.clickAgreeCheckoutBox().clickCheckoutButton();
+
+        Allure.step("Confirm the order and verify the confirmation message");
         ConfirmOrderPage.clickConfirmOrderButton();
         Assert.assertTrue(ConfirmOrderPage.getOrderPlacedTitle().contains("Your order has been placed!"));
     }

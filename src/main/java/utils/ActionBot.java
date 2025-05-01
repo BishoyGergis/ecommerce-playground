@@ -35,7 +35,7 @@ public class ActionBot {
     public static void click ( WebDriver driver , By locator) {
         Wait<WebDriver> wait = new FluentWait<>(driver)
             .withTimeout(Duration.ofSeconds(10))
-            .pollingEvery(Duration.ofMillis(300))
+            .pollingEvery(Duration.ofMillis(500))
             .ignoring(ElementNotInteractableException.class)
             .ignoring(StaleElementReferenceException.class)
             .ignoring(NotFoundException.class);

@@ -1,7 +1,10 @@
 package testCases.checkoutTestCases;
 
 import baseTest.BaseTest;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -34,23 +37,34 @@ public class CheckoutWithOutofStockProductTest extends BaseTest {
         ConfirmOrderPage = new ConfirmOrderPage(driver);
     }
 
-    @Description("Checkout with out of stock products ")
+    @Feature("Checkout Process")
+    @Story("Handle out-of-stock items before completing checkout")
+    @Description("Verify that the user can filter out-of-stock products, remove them from the cart, and proceed to place an order with in-stock items only")
     @Test
-    public void addToCartScenario () throws InterruptedException {
+    public void checkoutAfterRemoveOutOfStockItems () throws InterruptedException {
+        Allure.step("Apply 'Out of Stock' filter and select a product by index ");
         productPage.clickListViewButton().clickOutStockFilterCheckbox();
         Thread.sleep(2000);
         productPage.clickProductByIndex(1)
                 .clickClosePopupButton();
+
+        Allure.step("Remove 'Out of Stock' filter, apply 'In Stock' filter, and select a new product by index");
         productPage.clickOutStockFilterCheckbox().clickInStockFilterCheckbox();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         productPage.clickProductByIndex(3)
                 .clickClosePopupButton()
                 .clickCartIcon()
                 .clickSidebarMenuEditCartButton();
+
+        Allure.step("Remove out-of-stock items and click the 'Checkout' button");
         editCartPage.removeOutOfStockItems().clickCheckoutButton();
+
+        Allure.step("Agree to terms and proceed with checkout");
         checkoutPage
                 .clickAgreeCheckoutBox()
                 .clickCheckoutButton();
+
+        Allure.step("Confirm the order and verify the confirmation message");
         ConfirmOrderPage.clickConfirmOrderButton();
         Assert.assertTrue(ConfirmOrderPage.getOrderPlacedTitle().contains("Your order has been placed!"));
     }

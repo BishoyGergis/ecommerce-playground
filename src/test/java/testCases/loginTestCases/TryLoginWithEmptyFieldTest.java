@@ -1,7 +1,10 @@
 package testCases.loginTestCases;
 
 import baseTest.BaseTest;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -19,12 +22,15 @@ public class TryLoginWithEmptyFieldTest extends BaseTest {
         loginPage = new LoginPage(driver);
     }
 
-    @Description("Try to login with Email adress and passwords fields are empty")
+    @Feature("Authentication")
+    @Story("Login failure when credentials are missing")
+    @Description("Verify that attempting to log in without entering email and password results in an appropriate warning message")
     @Test
-    public void SuccessfuLogin () {
+    public void loginWithEmptyFields () {
+        Allure.step("Try to log in without entering email and password");
         loginPage.clickLoginButton();
 
-
+        Allure.step("Ensure login fails and the appropriate warning message is shown");
         Assert.assertTrue(loginPage.getLoginWarningMessage()
                 .contains("Your account has exceeded allowed number of login attempts")
                 ||loginPage.getLoginWarningMessage()

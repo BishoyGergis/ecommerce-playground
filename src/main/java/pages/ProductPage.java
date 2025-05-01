@@ -31,7 +31,7 @@ public class ProductPage {
     public By productContainer = By.cssSelector(".product-thumb");
     public By productName = By.cssSelector("h4.title a");
     public By productPrice = By.cssSelector(".price .price-new");
-    public By productaddToCartButto = By.cssSelector("button.btn-cart");
+    public By productaddToCartButto = By.cssSelector(".product-action > button.btn-cart");
 
     public ProductPage clickListViewButton () {
         click (driver , listViewButton);
@@ -70,6 +70,7 @@ public class ProductPage {
 
     public List<WebElement> getAllProductContainers() {
         return getListOfElements(driver,productContainer);
+
     }
     public String getProductNameByIndex (int productIndex) {
         WebElement product = getAllProductContainers().get(productIndex);
@@ -82,6 +83,7 @@ public class ProductPage {
     public ProductPage clickProductByIndex (int productIndex) {
         WebElement product = getAllProductContainers().get(productIndex);
         click(driver,product,productaddToCartButto);
+
         return this ;
     }
 

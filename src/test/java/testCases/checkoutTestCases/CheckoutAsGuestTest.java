@@ -1,7 +1,10 @@
 package testCases.checkoutTestCases;
 
 import baseTest.BaseTest;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -27,17 +30,22 @@ public class CheckoutAsGuestTest extends BaseTest {
         ConfirmOrderPage = new ConfirmOrderPage(driver);
     }
 
-    @Description("Checkout Scenario ")
+    @Feature("Checkout Process")
+    @Story("Guest user places an order successfully")
+    @Description("Verify that a guest user can add an in-stock product to the cart and complete the checkout process with valid information")
     @Test
-    public void addToCartScenario () throws InterruptedException {
+    public void checkOutAsGuest () throws InterruptedException {
+        Allure.step("Select product, add to cart, and proceed to checkout");
         productPage.clickListViewButton()
                 .clickInStockFilterCheckbox();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         productPage.clickProductByIndex(3)
                 .clickClosePopupButton()
                 .clickCartIcon()
                 .clickSidebarMenuEditCartButton();
         editCartPage.clickCheckoutButton();
+
+        Allure.step("Fill out personal, shipping, and payment details during checkout");
         checkoutPage.clickGuestCheckoutRadioButton()
                 .enterFirstName("Bisho")
                 .enterlasstName("Gergis")
@@ -48,12 +56,15 @@ public class CheckoutAsGuestTest extends BaseTest {
                 .enterPostcode("03")
                 .enterCompany("iti")
                 .selectCountryByName("Egypt");
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
+        Allure.step("Agree to terms and complete the order");
         checkoutPage.selectRegionByIndex(1)
                 .clickAgreeCheckoutBox()
                 .clickCheckoutButton();
         ConfirmOrderPage.clickConfirmOrderButton();
+
+        Allure.step("Verify order confirmation message");
         Assert.assertTrue(ConfirmOrderPage.getOrderPlacedTitle().contains("Your order has been placed!"));
     }
 

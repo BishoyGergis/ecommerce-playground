@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="EcommerceTestSuite" parallel="false">
+    <test name="AllTestCases">
+        <classes>
+
+            <class name="testCases.checkoutTestCases.CheckoutAsGuestTest"/>
+            <class name="testCases.checkoutTestCases.CheckoutWithLogedinUserTest"/>
+            <class name="testCases.checkoutTestCases.CheckoutWithOutofStockProductTest"/>
+            <class name="testCases.addToCartTestCases.AddToCartCounterTest"/>
+            <class name="testCases.searchTestCases.SearchTest"/>
+            <class name="testCases.registerTestCases.RegisterTest"/>
+            <class name="testCases.loginTestCases.LoginSuccessfullyTest"/>
+            <class name="testCases.loginTestCases.TryLoginWithEmptyFieldTest"/>
+            <class name="testCases.loginTestCases.TryLoginWithWrongPassword"/>
+        </classes>
+    </test>
+</suite>
